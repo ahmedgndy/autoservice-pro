@@ -17,7 +17,7 @@ public abstract class AuditableEntity : Entity
 
     protected AuditableEntity(Guid id, string createdBy) : base(id)
     {
-        CreatedAt = DateTimeOffset.UtcNow;
+        CreatedAt = DateTime.UtcNow;
         CreatedBy = createdBy;
     }
 
