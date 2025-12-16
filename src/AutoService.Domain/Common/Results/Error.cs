@@ -1,5 +1,9 @@
 namespace AutoService.Domain.Common.Results;
-
+/// <summary>
+/// Immutable value-type representing a domain error for the Result pattern.
+/// Use the provided static factory methods (e.g. NotFound, Validation) to create instances;
+/// instances compare by value (record semantics). Note: <c>default(Error)</c> yields null/zero properties.
+/// </summary>
 public readonly record struct Error
 {
     private Error(string code, string description, ErrorKind type)
