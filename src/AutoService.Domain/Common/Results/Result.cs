@@ -5,10 +5,10 @@ namespace AutoService.Domain.Common.Results;
 
 public static class Result
 {
-    public static Success Success() => default;
-    public static Created Created() => default;
-    public static Deleted Deleted() => default;
-    public static Updated Updated() => default;
+    public static Success Success => default;
+    public static Created Created => default;
+    public static Deleted Deleted => default;
+    public static Updated Updated => default;
 }
 
 public sealed class Result<TValue> : IResult<TValue>

@@ -1,6 +1,6 @@
 using AutoService.Domain.Common.Results;
 
-namespace AutoService.Domain.Employee;
+namespace AutoService.Domain.Employees;
 
 
 public static class EmployeeErrors
@@ -14,4 +14,7 @@ public static class EmployeeErrors
 
     public static Error RoleInvalid =>
         Error.Validation("Employee.Role.Invalid", "Invalid role assigned to employee.");
+
+    public static Error RoleRequired =>
+        Error.Validation("Employee.Role.Required", "Employee role is required.");
 }
