@@ -52,16 +52,16 @@ public sealed class Result<TValue> : IResult<TValue>
     {
         if (isSuccess)
         {
-            _Value = value ?? throw new ArgumentNullException(nameof(value), "Cannot create a successful Result with a null value.");
-            _Error = [];
+            _value = value ?? throw new ArgumentNullException(nameof(value), "Cannot create a successful Result with a null value.");
+            _errors = [];
             IsSuccess = true;
         }
         else
         {
             if (error == null || error.Count == 0)
                 throw new ArgumentException("cannot  create an empty or null errors list, provide at least one error", nameof(error));
-            _Error = error.ToList();
-            _Value = default!;
+            _errors = error.ToList();
+            _value = default!;
             IsSuccess = false;
         }
 

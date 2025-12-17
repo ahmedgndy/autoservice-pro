@@ -1,3 +1,4 @@
+using AutoService.Domain.Common;
 using AutoService.Domain.Common.Results;
 
 namespace AutoService.Domain.Identity;
