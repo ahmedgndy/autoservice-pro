@@ -13,26 +13,27 @@ public static class Result
 
 public sealed class Result<TValue> : IResult<TValue>
 {
-    private readonly List<Error>? _Error = default;
-    private readonly TValue? _Value = default;
+
+    private readonly List<Error>? _errors = null;
+    private readonly TValue? _value = default;
 
     public bool IsSuccess { get; }
     public bool IsError => !IsSuccess;
 
-    public List<Error>? Error => IsError ? _Error : [];
-    public TValue? Value => IsSuccess ? _Value : default;
-    public Error TopError => (_Error?.Count > 0) ? _Error[0] : default;
+    public List<Error>? Errors => IsError ? _errors! : [];
+    public TValue? Value => IsSuccess ? _value : default;
+    public Error TopError => (_errors?.Count > 0) ? _errors[0] : default;
 
     private Result(Error error)
     {
-        _Error = [error];
+        _errors = [error];
     }
 
     private Result(List<Error> errors)
     {
         if (errors == null || errors.Count == 0)
             throw new ArgumentException("cannot  create an empty or null errors list, provide at least one error", nameof(errors));
-        _Error = errors.ToList();
+        _errors = errors.ToList();
         IsSuccess = false;
     }
 
@@ -41,7 +42,7 @@ public sealed class Result<TValue> : IResult<TValue>
         if (value == null)
             throw new ArgumentNullException(nameof(value), "Cannot create a successful Result with a null value.");
         IsSuccess = true;
-        _Value = value;
+        _value = value;
     }
 
     [JsonConstructor]
@@ -70,8 +71,8 @@ public sealed class Result<TValue> : IResult<TValue>
            Func<TValue, TNextValue> onSuccess,
            Func<List<Error>, TNextValue> onFailure)
    => IsSuccess
-       ? onSuccess(_Value!)
-       : onFailure(_Error!);
+       ? onSuccess(_value!)
+       : onFailure(_errors!);
 
     public static implicit operator Result<TValue>(TValue value)
     {
