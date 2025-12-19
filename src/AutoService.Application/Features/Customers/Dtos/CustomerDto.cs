@@ -1,6 +1,6 @@
 namespace AutoService.Application.Features.Customers.Dtos
 {
-    public class CustomerDto
+    public sealed record CustomerDto
     {
         public Guid CustomerId { get; set; }
         public string Name { get; set; } = string.Empty;
